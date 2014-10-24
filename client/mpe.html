@@ -1,13 +1,42 @@
 <head>
-	<title>Ma Petite Entreprise</title>
+	<title>ma-petite-entreprise</title>
 </head>
 <body>
-	{{> main}}
 </body>
 
-<template name="main">
-	<button id="codeBarBtn">Code-barres</button>
+<template name="layout">
+	<div id="wrap">
+		{{> navbar}}
+
+		<div class="container">
+			{{> yield}}
+		</div>
+		<div id="push"></div>
+	</div>
+	{{> footer}}
+</template>
+
+<template name="home">
+	<button type="button" class="btn btn-primary" id="barCodeBtn">Code-barres</button>
 	<p>
 		{{product.name}}
 	</p>
+</template>
+
+<template name="footer">
+	<div id="footer">
+		<div class="container">
+			<small>2014 © {{siteName}}</small>
+		</div>
+	</div>
+</template>
+
+<template name="loading">
+	<i class="fa fa-spinner fa-spin fa-2x pull-left"></i>
+</template>
+
+<template name="notFound">
+	<blockquote>
+		<h4>Cette page n'existe pas ou n'est pas accessible.</h4>
+	</blockquote>
 </template>

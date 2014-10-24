@@ -1,12 +1,12 @@
-Template.main.helpers({
+Template.home.helpers({
 	"product": function () {
 		console.log(Session.get("productLookup"));
 		return Session.get("productLookup");
 	}
 });
 
-Template.main.events({
-	"click button#codeBarBtn": function () {
+Template.home.events({
+	"click button#barCodeBtn": function () {
 		if (Meteor.isCordova)
 			cordova.plugins.barcodeScanner.scan(
 				function (result) {
