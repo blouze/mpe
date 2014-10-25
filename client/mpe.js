@@ -1,7 +1,11 @@
 Template.home.helpers({
 	"product": function () {
-		console.log(Session.get("productLookup"));
 		return Session.get("productLookup");
+	},
+	"productUPC": function () {
+		var p = Session.get("productLookup");
+		if (p)
+			return p.ean || p.upc;
 	}
 });
 
@@ -10,7 +14,7 @@ Template.home.events({
 		if (Meteor.isCordova)
 			cordova.plugins.barcodeScanner.scan(
 				function (result) {
-					alert("We got a barcode\n" +
+					console.log("We got a barcode\n" +
 						"Result: " + result.text + "\n" +
 						"Format: " + result.format + "\n" +
 						"Cancelled: " + result.cancelled);
@@ -20,12 +24,12 @@ Template.home.events({
 						else if (res && res.data)
 							if (res.data.results_count > 0)
 								Session.set("productLookup", res.data.results[0]);
-					});
+						});
 				}, function (error) {
 					alert("Scanning failed: " + error);
 				});
 		else
-			Meteor.call('loopupUPC', "3344428000622", function (err, res) {
+			Meteor.call('loopupUPC', "883974958450", function (err, res) {
 				if (err)
 					console.log(err);
 				else if (res && res.data) {
@@ -35,3 +39,4 @@ Template.home.events({
 			});
 	}
 });
+//3344428000622

@@ -17,10 +17,19 @@
 </template>
 
 <template name="home">
-	<button type="button" class="btn btn-primary" id="barCodeBtn">Code-barres</button>
-	<p>
-		{{product.name}}
-	</p>
+	{{#autoForm collection="Products" id="insertProductForm" type="insert"}}
+	<fieldset>
+		<legend>Ajouter un produit</legend>
+		{{> afQuickField name='name' value=product.name}}
+		{{> afQuickField name='category' value=product.category}}
+		{{> afQuickField name='description' value=product.description}}
+		{{> afQuickField name='upc' value=productUPC}}
+	</fieldset>
+	<div class="btn-group pull-right">
+		<button type="button" class="btn btn-warning" id="barCodeBtn"><i class="fa fa-barcode fa-large"></i>&nbsp;Scanner</button>
+		<button type="submit" class="btn btn-primary"><i class="fa fa-plus fa-large"></i>&nbsp;Ajouter</button>
+	</div>
+	{{/autoForm}}
 </template>
 
 <template name="footer">

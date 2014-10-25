@@ -9,3 +9,6 @@ insecure
 http
 mizzao:bootstrap-3
 iron:router@0.9.4
+aldeed:collection2
+aldeed:autoform
+
