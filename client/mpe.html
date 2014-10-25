@@ -17,17 +17,24 @@
 </template>
 
 <template name="home">
-	{{#autoForm collection="Products" id="insertProductForm" type="insert"}}
+	{{#autoForm collection="Products" id="insertProductForm" type="insert" class="col-sm-8"}}
 	<fieldset>
 		<legend>Ajouter un produit</legend>
+		{{> afQuickField name='upc' value=productUPC}}
 		{{> afQuickField name='name' value=product.name}}
+		{{> afQuickField name='manufacturer' value=product.manufacturer}}
 		{{> afQuickField name='category' value=product.category}}
 		{{> afQuickField name='description' value=product.description}}
-		{{> afQuickField name='upc' value=productUPC}}
+		{{> afQuickField name='price_in' id='price_in' value=0}}
+		{{> afQuickField name='price_out' id='price_out' value=0}}
+		{{> afQuickField name='coef' value=productCoef disabled=true}}
+		{{> afQuickField name='stock' value=0}}
 	</fieldset>
+	<div class="btn-group">
+		<button type="button" class="btn btn-lg btn-default" id="barCodeBtn"><i class="fa fa-barcode fa-3"></i>&nbsp;Scanner</button>
+	</div>
 	<div class="btn-group pull-right">
-		<button type="button" class="btn btn-warning" id="barCodeBtn"><i class="fa fa-barcode fa-large"></i>&nbsp;Scanner</button>
-		<button type="submit" class="btn btn-primary"><i class="fa fa-plus fa-large"></i>&nbsp;Ajouter</button>
+		<button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-plus fa-3"></i>&nbsp;Ajouter</button>
 	</div>
 	{{/autoForm}}
 </template>

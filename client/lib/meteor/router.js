@@ -8,6 +8,9 @@ Router.onBeforeAction('loading');
 
 Router.map(function () {
 	this.route('home', {
-		path: '/'
+		path: '/',
+		data: function () {
+			return Products.find();
+		}
 	});
 });

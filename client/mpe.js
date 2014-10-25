@@ -2,6 +2,9 @@ Template.home.helpers({
 	"product": function () {
 		return Session.get("productLookup");
 	},
+	"productCoef": function () {
+		return Session.get("productCoef");
+	},
 	"productUPC": function () {
 		var p = Session.get("productLookup");
 		if (p)
@@ -37,6 +40,18 @@ Template.home.events({
 						Session.set("productLookup", res.data.results[0]);
 				}
 			});
+	},
+	"blur input#price_out": function (e, t) {
+		console.log(t.find("#price_out"));
+		var p_in = t.find("#price_in").value;
+		var p_out = t.find("#price_out").value;
+		if (p_in > 0)
+			Session.set("productCoef", numeral(p_out / p_in).format("0.00"));
 	}
 });
 //3344428000622
+
+Template.home.rendered = function () {
+	Session.set("productLookup", null);
+	Session.set("productCoef", 1);
+};
